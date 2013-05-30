@@ -87,6 +87,8 @@ file( GLOB LIBOVR_FILES
 	Src/OVR_HIDDeviceImpl.h
 	Src/OVR_LatencyTestImpl.cpp
 	Src/OVR_LatencyTestImpl.h
+	Src/OVR_SensorFilter.cpp
+	Src/OVR_SensorFilter.h
 	Src/OVR_SensorFusion.cpp
 	Src/OVR_SensorFusion.h
 	Src/OVR_SensorImpl.cpp
@@ -95,6 +97,8 @@ file( GLOB LIBOVR_FILES
 	Src/OVR_ThreadCommandQueue.h
 	Src/Util/Util_LatencyTest.cpp
 	Src/Util/Util_LatencyTest.h
+	Src/Util/Util_MagCalibration.cpp
+	Src/Util/Util_MagCalibration.h
 	Src/Util/Util_Render_Stereo.cpp
 	Src/Util/Util_Render_Stereo.h )
 
