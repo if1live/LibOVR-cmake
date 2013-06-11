@@ -33,7 +33,7 @@ endif()
 add_definitions(-DUNICODE -D_UNICODE)
 set( LIBOVR_INC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/Include" )
 
-include_directories( Include )
+include_directories( Include Src )
 
 file( GLOB INTERFACE_HEADERS Include/*.h )
 
@@ -110,5 +110,7 @@ source_group( platform FILES ${PLATFORM_FILES} )
 add_library( LibOVR STATIC 
 	${LIBOVR_FILES} 
 	${PLATFORM_FILES} )
-	
-set( LIBOVR_INC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/Include" PARENT_SCOPE )
+
+if( NOT (CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR) )
+	set( LIBOVR_INC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/Include" PARENT_SCOPE )
+endif()
