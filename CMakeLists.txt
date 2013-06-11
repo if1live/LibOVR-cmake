@@ -31,6 +31,7 @@ message( FATAL_ERROR "LibOVR support Win32/MacOS" )
 endif()
 
 add_definitions(-DUNICODE -D_UNICODE)
+set( LIBOVR_INC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/Include" )
 
 include_directories( Include )
 
@@ -109,3 +110,5 @@ source_group( platform FILES ${PLATFORM_FILES} )
 add_library( LibOVR STATIC 
 	${LIBOVR_FILES} 
 	${PLATFORM_FILES} )
+	
+set( LIBOVR_INC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/Include" PARENT_SCOPE )
