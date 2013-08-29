@@ -2,32 +2,42 @@ cmake_minimum_required(VERSION 2.6)
 project( LibOVR )
 
 if(APPLE)
-file( GLOB PLATFORM_FILES
-	Src/Kernel/OVR_ThreadsPthread.cpp
-	Src/OVR_OSX_DeviceManager.cpp
-	Src/OVR_OSX_DeviceManager.h
-	Src/OVR_OSX_HIDDevice.cpp
-	Src/OVR_OSX_HIDDevice.h
-	Src/OVR_OSX_HMDDevice.cpp
-	Src/OVR_OSX_HMDDevice.h
-	Src/OVR_OSX_SensorDevice.cpp )
+	file( GLOB PLATFORM_FILES
+		Src/Kernel/OVR_ThreadsPthread.cpp
+		Src/OVR_OSX_DeviceManager.cpp
+		Src/OVR_OSX_DeviceManager.h
+		Src/OVR_OSX_HIDDevice.cpp
+		Src/OVR_OSX_HIDDevice.h
+		Src/OVR_OSX_HMDDevice.cpp
+		Src/OVR_OSX_HMDDevice.h
+		Src/OVR_OSX_SensorDevice.cpp )
 	
 elseif(MSVC)
-file( GLOB PLATFORM_FILES
-	Src/Kernel/OVR_ThreadsWinAPI.cpp
-	Src/OVR_Win32_DeviceManager.cpp
-	Src/OVR_Win32_DeviceManager.h
-	Src/OVR_Win32_DeviceStatus.cpp
-	Src/OVR_Win32_DeviceStatus.h
-	Src/OVR_Win32_HIDDevice.cpp
-	Src/OVR_Win32_HIDDevice.h
-	Src/OVR_Win32_HMDDevice.cpp
-	Src/OVR_Win32_HMDDevice.h
-	Src/OVR_Win32_SensorDevice.cpp
-	Src/OVR_Win32_SensorDevice.h )
+	file( GLOB PLATFORM_FILES
+		Src/Kernel/OVR_ThreadsWinAPI.cpp
+		Src/OVR_Win32_DeviceManager.cpp
+		Src/OVR_Win32_DeviceManager.h
+		Src/OVR_Win32_DeviceStatus.cpp
+		Src/OVR_Win32_DeviceStatus.h
+		Src/OVR_Win32_HIDDevice.cpp
+		Src/OVR_Win32_HIDDevice.h
+		Src/OVR_Win32_HMDDevice.cpp
+		Src/OVR_Win32_HMDDevice.h
+		Src/OVR_Win32_SensorDevice.cpp
+		Src/OVR_Win32_SensorDevice.h )
 	
 else()
-message( FATAL_ERROR "LibOVR support Win32/MacOS" )
+	# Linux
+	file( GLOB PLATFORM_FILES 
+		Src/OVR_Linux_DeviceManager.cpp
+		Src/OVR_Linux_DeviceManager.h
+		Src/OVR_Linux_HIDDevice.cpp
+		Src/OVR_Linux_HIDDevice.h
+		Src/OVR_Linux_HMDDevice.cpp
+		Src/OVR_Linux_HMDDevice.h
+		Src/OVR_Linux_SensorDevice.cpp
+		)
+	
 endif()
 
 add_definitions(-DUNICODE -D_UNICODE)
@@ -96,6 +106,10 @@ file( GLOB LIBOVR_FILES
 	Src/OVR_SensorImpl.h
 	Src/OVR_ThreadCommandQueue.cpp
 	Src/OVR_ThreadCommandQueue.h
+	Src/OVR_JSON.cpp
+	Src/OVR_JSON.h
+	Src/OVR_Profile.cpp
+	Src/OVR_Profile.h
 	Src/Util/Util_LatencyTest.cpp
 	Src/Util/Util_LatencyTest.h
 	Src/Util/Util_MagCalibration.cpp
