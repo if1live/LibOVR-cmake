@@ -64,7 +64,7 @@ float DistortionConfig::DistortionFnInverse(float r)
 StereoConfig::StereoConfig(StereoMode mode, const Viewport& vp)
     : Mode(mode),
       InterpupillaryDistance(0.064f), AspectMultiplier(1.0f),
-      FullView(vp), DirtyFlag(true),
+      FullView(vp), DirtyFlag(true), IPDOverride(false),
       YFov(0), Aspect(vp.w / float(vp.h)), ProjectionCenterOffset(0),
       OrthoPixelOffset(0)
 {
@@ -112,6 +112,9 @@ void StereoConfig::SetHMDInfo(const HMDInfo& hmd)
 
     Distortion.SetChromaticAberration(hmd.ChromaAbCorrection[0], hmd.ChromaAbCorrection[1],
                                       hmd.ChromaAbCorrection[2], hmd.ChromaAbCorrection[3]);
+
+    if (!IPDOverride)
+        InterpupillaryDistance = HMD.InterpupillaryDistance;
 
     DirtyFlag = true;
 }
@@ -244,7 +247,7 @@ void StereoConfig::update2D()
     // eye, where hmd screen projection surface is at 0.05m distance.
     // This introduces an extra off-center pixel projection shift based on eye distance.
     // This offCenterShift is the pixel offset of the other camera's center
-    // in your reference camera based on surface distance.
+    // in your reference camera based on surface distance.    
     float metersToPixels          = (HMD.HResolution / HMD.HScreenSize);
     float lensDistanceScreenPixels= metersToPixels * HMD.LensSeparationDistance;
     float eyeDistanceScreenPixels = metersToPixels * InterpupillaryDistance;
@@ -275,7 +278,7 @@ void StereoConfig::update2D()
 void StereoConfig::updateEyeParams()
 {
     // Projection matrix for the center eye, which the left/right matrices are based on.
-    Matrix4f projCenter = Matrix4f::PerspectiveRH(YFov, Aspect, 0.01f, 1000.0f);
+    Matrix4f projCenter = Matrix4f::PerspectiveRH(YFov, Aspect, 0.01f, 2000.0f);
    
     switch(Mode)
     {
