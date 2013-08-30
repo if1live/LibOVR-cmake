@@ -41,7 +41,7 @@ else()
 endif()
 
 add_definitions(-DUNICODE -D_UNICODE)
-set( LIBOVR_INC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/Include" )
+set( LIBOVR_INC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/Include" "${CMAKE_CURRENT_SOURCE_DIR}/Src")
 
 include_directories( Include Src )
 
