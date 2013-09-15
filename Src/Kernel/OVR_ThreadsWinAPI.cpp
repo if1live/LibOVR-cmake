@@ -942,7 +942,7 @@ bool Thread::MSleep(unsigned msecs)
 
 void Thread::SetThreadName( const char* name )
 {
-#if !defined(OVR_BUILD_SHIPPING) || defined(OVR_BUILD_PROFILING)
+#if (!defined(OVR_BUILD_SHIPPING) || defined(OVR_BUILD_PROFILING)) && !defined(__MINGW32__)
     // Looks ugly, but it is the recommended way to name a thread.
     typedef struct tagTHREADNAME_INFO {
         DWORD dwType;     // Must be 0x1000
