@@ -28,7 +28,7 @@ otherwise accompanies this software in either electronic or hard copy form.
 #include "Kernel/OVR_Array.h"
 
 #ifdef OVR_OS_WIN32
-#include <Shlobj.h>
+#include <shlobj.h>
 #else
 #include <dirent.h>
 #include <sys/stat.h>

@@ -6,7 +6,8 @@ if(APPLE)
 		"Src/Kernel/OVR_ThreadsPthread.*"
 		"Src/OVR_OSX_*.*" )
 	
-elseif(MSVC)
+elseif(WIN32)
+	add_definitions(-DMINGW_HAS_SECURE_API)
 	file( GLOB PLATFORM_FILES
 		"Src/Kernel/OVR_ThreadsWinAPI.*"
 		"Src/OVR_Win32_*.*" )
@@ -80,6 +81,7 @@ source_group( platform FILES ${PLATFORM_FILES} )
 add_library( LibOVR STATIC 
 	${LIBOVR_FILES} 
 	${PLATFORM_FILES} )
+set_target_properties(LibOVR PROPERTIES PREFIX "")
 
 if( NOT (CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR) )
 	set( LIBOVR_INC_DIR 
