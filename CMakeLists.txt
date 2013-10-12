@@ -70,7 +70,6 @@ file( GLOB LIBOVR_FILES
 	"Src/OVR_JSON.*"
 	"Src/OVR_Profile.*"
 	"Src/Util/Util_LatencyTest.*"
-	"Src/Util/Util_MagCalibration.*"
 	"Src/Util/Util_Render_Stereo.*" )
 
 source_group( include FILES ${INTERFACE_HEADERS} )
