@@ -2,4 +2,4 @@
 
 UnOfficial LibOVR Repository with CMake.
 
-Current Version : Oculus SDK 0.2.5
+Current Version : Oculus SDK 0.2.5c
